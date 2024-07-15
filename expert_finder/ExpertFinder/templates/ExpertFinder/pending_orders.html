@@ -1,0 +1,44 @@
+{% extends "ExpertFinder/base_dashboard.html" %}
+{% block Dashcontent %}
+
+                <div class="single-left-inner">
+                    <div class="table-responsive">
+                      <h5 class="card-title">Pending Orders 😩</h5>
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <td scope="col">Order No.</td>
+                                    <th scope="col">User</th>
+                                    <th scope="col">User Email</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Change Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                    <tr>
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.user.username }}</td>
+                                        <td>{{ item.user.email}}</td>
+                                        <td>{{ item.item.title }} <span class="badge badge-{{ item.item.label_colour }}">{{ item.item.labels }}</span></td>
+                                        <td>{{ item.address }}</td>
+                                        <td>{{ item.item.price }}</td>
+                                        <td>
+                                            <form method="POST" action="{% url 'update_status' item.id %}" style="display: flex;">
+                                                {% csrf_token %}
+                                                <select class="form-control" name="status">
+                                                    <option value="Active" selected="selected">Active</option>
+                                                    <option value="Completed">Completed</option>
+                                                </select>
+                                                <button type="submit" style="background-color: transparent; border-color: #4ac1f7; border-style: solid; border-radius: 5px">🖊️</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+{% endblock %}

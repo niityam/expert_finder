@@ -1,0 +1,14 @@
+{% extends "ExpertFinder/base_login.html" %}
+{% load crispy_forms_tags %}
+{% block logincontent %}
+
+                        <h1 class="loginh1" >You have been logged out</h1>
+                            <hr>
+                            <form action="{% url 'login' %}">
+                                <button type="submit" class="loginbutton">Log In Again</button>
+                            </form>
+                            <form action="{% url 'home' %}">
+                                <button type="submit" class="loginbutton">Home Page</button>
+                            </form>
+
+ {% endblock logincontent %}

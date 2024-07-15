@@ -1,0 +1,111 @@
+{% extends "ExpertFinder/base.html" %}
+{% load humanize %}
+{% load static %}
+{% block content %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <section class="w3l-inner-banner">
+        <div class="wrapper">
+        </div>
+    </section>
+    <!-- Blog -->
+    <section class="w3l-blog-single no-padding">
+        <div class="single blog">
+            <div class="wrapper">
+            {% if messages %}
+                    {% for message in messages %}
+                      <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                <div class="d-grid grid-colunm-2">
+
+                    <!-- left side blog post content -->
+
+                    <div class="single-left">
+                    {% if cart_items %}
+
+                        <h5 class="card-title">Cart Items </h5>
+                        {% for cart in cart_items %}
+                                <div class="w3l-price-2">
+                                    <div class="price-box btn-layout bt6">
+                                        <div class="grid grid-column-2">
+                                            <div class="column1">
+                                                <a href="#img5">
+                                                    <img src="../../static/ExpertFinder/assets/images/job{{ cart.item.imgno }}.png" width="60px" alt="">
+                                                <img src="{{ cart.item.image }}" width="60px" class="img-responsive" />
+                                                </a>
+                                                <div class="job-info">
+                                                    <h6 class="pricehead"><a href="{% url 'expertise-detail' cart.item.id %}">{{ cart.item.title }}</a>
+                                                    </h6>
+                                                    <ul class="location">
+                                                        <li><span class="fa fa-map-marker"></span>{{ cart.item.location }}</li>
+                                                        <li><span class="fa fa-cog"></span> {{ cart.item.category }}</li>
+                                                        <li> <a href="{% url 'user-expertise' cart.item.expert_identity %}"><span class="fa fa-id-badge"></span> {{ cart.item.expert_identity }}</a></li>
+                                                   </ul>
+                                                </div>
+                                            </div>
+                                            <div class="column2">
+                                                <p><Strong>Price :</Strong>{{ cart.item.price }}</p>
+                                                <p><Strong>Time :</Strong>{{ cart.item.time_to_complete }}</p>
+                                            </div>
+                                            <div class="column3 text-right">
+                                                <a href="{% url 'remove-from-cart' cart.id %}" class="actionbg">Delete😢</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        {% else %}
+                            <h5 class="card-title">Looks like your cart is empty, GET EXPERT NOW! </h5>
+                            <aside class="posts single-left-inner" style="max-width: 700px">
+                                   <h5 class="search">Links</h5>
+                                        <div class="column3">
+                                            <hr>
+                                            <a href="{% url 'home' %}" style="background-color: transparent; border: none">Home</a> <hr style="width: 60%; margin-left:0;">
+                                            <a href="{% url 'profile' %}" style="background-color: transparent; border: none">Profile</a> <hr style="width: 60%; margin-left:0;">
+                                            <a href="{% url 'logout' %}" style="background-color: transparent; border: none">Log-out</a> <hr style="width: 60%; margin-left:0;">
+                                        </div>
+                            </aside>
+
+                    {% endif %}
+
+                    </div>
+
+                    <!-- right side bar -->
+
+                    <div class="right-side-bar">
+                        <aside class="posts single-left-inner">
+                                <h5 class="search">Personal Details</h5>
+                                <div class="column3">
+                                    <hr >
+                                    <a style="background-color: transparent; border: none">Username: {{ request.user.username }}</a>
+                                    <a style="background-color: transparent; border: none">Email: {{ request.user.email }}</a>
+                                    <a style="background-color: transparent; border: none">Address: {{ request.user.profile.address }}</a> <hr style="width: 60%; margin-left:0;">
+                                    <a style="background-color: transparent; border: none">Above given details will be shown to expert for reference.</a>
+                                    <a style="background-color: transparent; border: none">If you want to change, Change details from profile page and add item again to your cart</a>
+                                </div>
+                        </aside>
+                        <aside class="posts single-left-inner">
+                            <h5 class="search">Order Summary</h5>
+                                <div class="column3">
+                                    <hr >
+                                    <a style="font-size: 17px; background-color: transparent; border: none;"> Total Amount: {{ totalcartvalue.item__price__sum|intcomma }}</a> <hr style="width: 60%; margin-left:0;">
+                                    <a style="font-size: 17px; background-color: transparent; border: none;" > No of experts booking: {{ totalcartitems }}</a> <hr style="width: 60%; margin-left:0;">
+                                    <a style="font-size: 17px; background-color: #ff5f62; cursor: pointer;" href="{% url 'ordered' %}"> Checkout😄</a> <hr style="width: 60%; margin-left:0;">
+                                    <a style="font-size: 17px; background-color: #75a5f1; cursor: pointer;" href="{% url 'home' %}"> Continue looking Experts🧐</a> <hr style="width: 60%; margin-left:0;">
+                                </div>
+                        </aside>
+                    </div>
+                    <!-- //right side bar -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //blog single-->
+
+    </div>
+ {% endblock content %}

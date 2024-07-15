@@ -1,0 +1,69 @@
+{% extends "ExpertFinder/base.html" %}
+{% load humanize %}
+{% load static %}
+{% block content %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <section class="w3l-inner-banner">
+        <div class="wrapper">
+        </div>
+    </section>
+    <!-- Blog -->
+    <section class="w3l-blog-single no-padding">
+        <div class="single blog">
+            <div class="wrapper">
+                <div class="d-grid grid-colunm-2">
+                    <!-- left side blog post content -->
+
+                    <div class="single-left">
+
+                        <form method="POST">
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                <legend class="border-bottom mb-4">Delete Cart Item</legend>
+                                <h2>Are you sure you want to remove Expertise: <br>"{{ object.item.title }}" by {{ object.item.expert_identity }}
+                                    <br> from cart</h2>
+                            </fieldset>
+                            <div class="form-group">
+                                <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+                                <a class="btn btn-outline-secondary" href="{% url 'cart' %}">Cancel</a>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <!-- right side bar -->
+
+                    <div class="right-side-bar">
+                        <aside class="posts single-left-inner">
+                                <h5 class="search">Personal Details</h5>
+                                <div class="column3">
+                                    <hr >
+                                    <a style="background-color: transparent; border: none">Email: {{ request.user.username }}</a>
+                                    <a style="background-color: transparent; border: none">Username: {{ request.user.email }}</a>
+                                    <a style="background-color: transparent; border: none">Address: {{ request.user.profile.address }}</a> <hr style="width: 60%; margin-left:0;">
+                                    <a style="background-color: transparent; border: none">Above given details will be shown to expert for reference.</a>
+                                    <a style="background-color: transparent; border: none">If you want to change, Change details from profile page and add item again to your cart</a>
+                                </div>
+                        </aside>
+                        <aside class="posts single-left-inner">
+                            <h5 class="search">Order Summary</h5>
+                                <div class="column3">
+                                    <hr >
+                                    <a style="font-size: 17px; background-color: transparent; border: none;"> Total Amount: {{ totalcartvalue.item__price__sum|intcomma }}</a> <hr style="width: 60%; margin-left:0;">
+                                    <a style="font-size: 17px; background-color: transparent; border: none;" > No of experts booking: {{ totalcartitems }}</a> <hr style="width: 60%; margin-left:0;">
+                                    <a style="font-size: 17px; background-color: #ff5f62; cursor: pointer;" href="{% url 'ordered' %}"> Checkout😄</a> <hr style="width: 60%; margin-left:0;">
+                                    <a style="font-size: 17px; background-color: #75a5f1; cursor: pointer;" href="{% url 'home' %}"> Continue looking Experts🧐</a> <hr style="width: 60%; margin-left:0;">
+                                </div>
+                        </aside>
+                    </div>
+                    <!-- //right side bar -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //blog single-->
+
+    </div>
+ {% endblock content %}

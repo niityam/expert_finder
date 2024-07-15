@@ -1,0 +1,209 @@
+{% extends "ExpertFinder/base_dashboard.html" %}
+{% block Dashcontent %}
+
+                <div class="single-left-inner">
+                    <div class="table-responsive">
+                      <h5 class="card-title">Site Map</h5>
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Html Name</th>
+                                    <th scope="col">Path Name</th>
+                                    <th scope="col">For</th>
+                                    <th scope="col">Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'about' %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> About</a></td>
+                                        <td>about.html</td>
+                                        <td>about</td>
+                                        <td></td>
+                                        <td>Default</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'admin_dashboard' %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> Admin Dashboard</a></td>
+                                        <td>admin_dashboard.html</td>
+                                        <td>admin_dashboard</td>
+                                        <td>Expert Admin Page</td>
+                                        <td>Dashboard</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'admin_view' %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> Completed Orders</a></td>
+                                        <td>admin_view.html</td>
+                                        <td>admin_view</td>
+                                        <td>Expert Completed Order</td>
+                                        <td>Dashboard</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Base 1</td>
+                                        <td>base.html</td>
+                                        <td>-</td>
+                                        <td>Base for Default</td>
+                                        <td>Base</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Base 2</td>
+                                        <td>base_dashboard.html</td>
+                                        <td>-</td>
+                                        <td>Base for Expert</td>
+                                        <td>Base</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Base 3</td>
+                                        <td>base_login.html</td>
+                                        <td>-</td>
+                                        <td>Base for Login</td>
+                                        <td>Base</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'cart' %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> Cart</a></td>
+                                        <td>cart.html</td>
+                                        <td>cart</td>
+                                        <td>User Cart</td>
+                                        <td>Default</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'remove-from-cart' 3 %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> Remove From Cart</a></td>
+                                        <td>cartitems_confirm_delete.html</td>
+                                        <td>remove-from-cart</td>
+                                        <td>to remove item from cart</td>
+                                        <td>Default</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="/category/?cat=Coding" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> Category Redirect</a></td>
+                                        <td>category_list.html</td>
+                                        <td>category-expertise</td>
+                                        <td>Filter Result Expertise Category</td>
+                                        <td>Default</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'contact' %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> Contact</a></td>
+                                        <td>contact.html</td>
+                                        <td>contact</td>
+                                        <td>Site Contact</td>
+                                        <td>Default</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'expertise-delete' 2 %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> Expertise Delete</a></td>
+                                        <td>expertise_confirm_delete.html</td>
+                                        <td>expertise-delete</td>
+                                        <td>Delete Expertise added by particular Expert</td>
+                                        <td>Dashboard</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'expertise-create' %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> New Expertise</a></td>
+                                        <td>expertise_form.html</td>
+                                        <td>expertise-create</td>
+                                        <td>Create New Expertise</td>
+                                        <td>Dashboard</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'user-expertise' "admin" %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> Experise List by Expert</a></td>
+                                        <td>expertise_list.html</td>
+                                        <td>user-expertise</td>
+                                        <td>All Expertise by Particular user</td>
+                                        <td>Default</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'home' %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> Home Page</a></td>
+                                        <td>index.html</td>
+                                        <td>home</td>
+                                        <td>Site Home Page</td>
+                                        <td>Default</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'expertise-detail' 2 %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> Expertise Detail</a></td>
+                                        <td>job-single.html</td>
+                                        <td>expertise-detail</td>
+                                        <td>Display Expertise in Detail</td>
+                                        <td>Default</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'login' %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> login</a></td>
+                                        <td>login.html</td>
+                                        <td>login</td>
+                                        <td>login Page</td>
+                                        <td>Login</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'logout' %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> logout</a></td>
+                                        <td>logout.html</td>
+                                        <td>logout</td>
+                                        <td>logout Redirect Page</td>
+                                        <td>Login</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'order_details' %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> User Order Details</a></td>
+                                        <td>order_details.html</td>
+                                        <td>order_details</td>
+                                        <td>User Order Details </td>
+                                        <td>Default</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'pending_orders' %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> Expert Pending Orders</a></td>
+                                        <td>pending_orders.html</td>
+                                        <td>pending_orders</td>
+                                        <td>Expert Pending Order</td>
+                                        <td>Default</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'profile' %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> Profile</a></td>
+                                        <td>profile.html</td>
+                                        <td>profile</td>
+                                        <td>User Profile Page</td>
+                                        <td>Default</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="/searchresults/?query=&city=a" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> Search Results</a></td>
+                                        <td>search-results.html</td>
+                                        <td>searchresults</td>
+                                        <td>Shows Search Result Here</td>
+                                        <td>Default</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'signup' %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> Signup Page</a></td>
+                                        <td>signup.html</td>
+                                        <td>signup</td>
+                                        <td>Signup Page</td>
+                                        <td>Default</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="{% url 'sitemap' %}" style="border: none;background-color: transparent; margin: 0%; padding: 0%"> Site Map of Whole Website</a></td>
+                                        <td>sitemap.html</td>
+                                        <td>sitemap</td>
+                                        <td>Site Map of Whole Website</td>
+                                        <td>Default</td>
+                                    </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+{% endblock %}

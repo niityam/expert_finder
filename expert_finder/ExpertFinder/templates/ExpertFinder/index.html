@@ -1,0 +1,382 @@
+{% extends "ExpertFinder/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="w3l-cover-3">
+	<div class="cover top-bottom">
+            <div class="middle-section text-center">
+                <div class="section-width">
+                    <h2>Welcome,</h2>
+                    <h2>How we may help you today!</h2>
+                </div>
+                <div class="most-searches">
+                    <h4>Frequent Searches</h4>
+                    <ul>
+                        {% if user.is_authenticated %}
+                            <li><a href="/searchresults/?query=Painting&city={{ request.user.profile.city }}">Painting</a></li>
+                            <li><a href="/searchresults/?query=Repair&city={{ request.user.profile.city }}">Repair</a></li>
+                            <li><a href="/searchresults/?query=Mehndi&city={{ request.user.profile.city }}">Mehndi</a></li>
+                        {% else %}
+                            <li><a href="/searchresults/?query=Painting&city=a">Painting</a></li>
+                            <li><a href="/searchresults/?query=Repair&city=a">Repair</a></li>
+                            <li><a href="/searchresults/?query=Mehndi&city=a">Mehndi</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+                <style>
+    .s01 {
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    }
+
+    .s01 form {
+    position: center;
+    width: 80%;
+    max-width: 1000px;
+    }
+
+    .s01 form .inner-form {
+    border-radius: 5px;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-align: center;
+    align-items: center;
+    }
+
+    .s01 form .inner-form .input-field {
+    margin-right: 1.3%;
+    height: 50px;
+    }
+
+    .s01 form .inner-form .input-field input {
+    height: 100%;
+    background: #fff;
+    border-radius: 5px;
+    border: 0;
+    display: block;
+    width: 100%;
+    padding: 10px 32px;
+    font-size: 20px;
+    }
+
+    .s01 form .inner-form .input-field input.placeholder {
+    color: #9a9a9a;
+    font-size: 20px;
+    }
+
+    .s01 form .inner-form .input-field input:-moz-placeholder {
+    color: #9a9a9a;
+    font-size: 20px;
+    }
+
+    .s01 form .inner-form .input-field input::-webkit-input-placeholder {
+    color: #9a9a9a;
+    font-size: 15px;
+    }
+
+    .s01 form .inner-form .input-field.first-wrap {
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    }
+
+    .s01 form .inner-form .input-field.second-wrap {
+    width: 35.77%;
+    min-width: 180px;
+    }
+
+    .s01 form .inner-form .input-field.third-wrap {
+    width: 180px;
+    margin-right: 0;
+    }
+
+    .s01 form .inner-form .input-field.third-wrap .btn-search {
+    height: 100%;
+    width: 100%;
+    background: #FF4A4D;
+    white-space: nowrap;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #fff;
+    transition: all .2s ease-out, color .2s ease-out;
+    border: 0;
+    cursor: pointer;
+    }
+
+    .s01 form .inner-form .input-field.third-wrap .btn-search:hover {
+    background: #F63137;
+    }
+
+    @media screen and (max-width: 992px) {
+    .s01 form legend {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 50px;
+    }
+    .s01 form .inner-form {
+    padding: 30px 35px;
+    }
+    .s01 form .inner-form .input-field {
+    height: 50px;
+    }
+    }
+
+    @media screen and (max-width: 767px) {
+    .s01 form legend {
+    font-size: 40px;
+    margin-bottom: 40px;
+    }
+    .s01 form .inner-form {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 20px;
+    }
+    .s01 form .inner-form .input-field {
+    margin-right: 0;
+    }
+    .s01 form .inner-form .input-field input {
+    padding: 5px 15px;
+    font-size: 16px;
+    }
+    .s01 form .inner-form .input-field.first-wrap {
+    width: 100%;
+    margin-bottom: 20px;
+    }
+    .s01 form .inner-form .input-field.second-wrap {
+    width: calc(50% - 10px);
+    min-width: auto;
+    }
+    .s01 form .inner-form .input-field.third-wrap {
+    width: calc(50% - 10px);
+    }
+    .s01 form .inner-form .input-field.third-wrap .btn-search {
+    font-size: 16px;
+    }
+    }
+
+    </style>
+
+                <div class="s01">
+                {% if user.is_authenticated %}
+                          <form action="searchresults/" method="get">
+                            <div class="inner-form">
+                                    <div class="input-field first-wrap">
+                                        <input type="search" name="query" id="query" placeholder="Search Expertise.."/>
+                                      </div>
+                                      <div class="input-field second-wrap">
+                                        <input type="search" name="city" id="city" placeholder="Enter City | OPTIONAL | Now: {{ request.user.profile.city }}" />
+                                      </div>
+                                      <div class="input-field third-wrap">
+                                        <button class="btn-search" type="submit">Search</button>
+                                    </div>
+                            </div>
+                          </form>
+
+                    {% else %}
+                          <form action="searchresults/" method="get">
+                             <div class="inner-form">
+                                    <div class="input-field first-wrap">
+                                        <input type="search" name="query" id="query" placeholder="Search Expertise.." />
+                                    </div>
+                                    <div class="input-field second-wrap">
+                                        <input input type="search" name="city" id="city" placeholder="Enter your city" required />
+                                    </div>
+                                    <div class="input-field third-wrap">
+                                        <button class="btn-search" type="submit">Search</button>
+                                    </div>
+                             </div>
+                          </form>
+                    {% endif %}
+                </div>
+                </div>
+        </div>
+	</div>
+</section>
+
+	<!-- companies20 -->
+	<section class="w3l-companies-20">
+		<div class="companies20">
+			<h3 class="heading">Explore Categories</h3>
+			<div class="wrapper">
+				<div class="companies20-content">
+					<div class="companies-wrapper">
+						<div class="owl-carousel owl-theme">
+                            {% for homecategory in expertisecategory %}
+                                <div class="item">
+                                    <a href="/category/?cat={{ homecategory.category }}"> {{ homecategory.category }} </a>
+                                    <p>{{ homecategory.title }}</p>
+                                    <span class="pos-icon">
+                                        <span class="fa fa-laptop"></span>
+                                    </span>
+							    </div>
+                            {% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- //companies20 -->
+
+	</div>
+
+	<!-- w3l-covers-14 -->
+	<section class="w3l-covers-14">
+		<div id="covers14-block">
+			<div class="wrapper">
+				<div class="covers14-text">
+					<h4>An Expert for you is waiting! </h4>
+					<p>Hire them now, and get your work done quickly & professionally.</p>
+					<a class="actionbg" href="/searchresults/?query=&city=a">Search now</a>
+					<a class="actionbg1" href="{% url 'cart' %}">View Cart</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- w3l-covers-14 -->
+	<section class="w3l-price-2">
+		<div class="price-main">
+			<h3 class="heading">Featured Categories</h3>
+			<div class="wrapper">
+				<div class="pricing-style-w3ls">
+					<div class="full text-center">
+						<label class="toggler toggler--is-active" id="filt-monthly">Designing</label>
+						<div class="toggle" id="switcher"></div>
+						<label class="toggler" id="filt-hourly">Repair</label>
+					</div>
+					<div id="monthly" class="">
+						<div class="pricing-chart">
+<!--                        Loop to display featured category-->
+                            {% for homecategory in homecategorydata %}
+<!--                                if else to check if category is designing or repair-->
+                                {% if homecategory.category == 'Designing' %}
+                                    <div class="price-box btn-layout bt6">
+                                        <div class="grid grid-column-2">
+                                            <div class="column1">
+                                                <a href="#img5">
+                                                    <img src="../../static/ExpertFinder/assets/images/job{{ homecategory.imgno }}.png" width="60px" alt="">
+                                                <img src="{{ homecategory.image }}" width="60px" class="img-responsive" />
+                                                </a>
+                                                <div class="job-info">
+                                                    <h6 class="pricehead"><a href="{% url 'expertise-detail' homecategory.id %}">{{ homecategory.title }}</a>
+                                                    </h6>
+                                                    <ul class="location">
+                                                        <li><span class="fa fa-map-marker"></span>{{ homecategory.location }}</li>
+                                                        <li><span class="fa fa-cog"></span> {{ homecategory.category }}</li>
+                                                        <li> <a href="{% url 'user-expertise' homecategory.expert_identity %}"><span class="fa fa-id-badge"></span> {{ homecategory.expert_identity }}</a></li>
+                                                   </ul>
+                                                </div>
+                                            </div>
+                                            <div class="column2">
+                                                <p><Strong>Price :</Strong>{{ homecategory.price }}</p>
+                                                <p><Strong>Time :</Strong>{{ homecategory.time_to_complete }}</p>
+                                            </div>
+                                            <div class="column3 text-right">
+                                                <a href="{% url 'expertise-detail' homecategory.id %}" class="actionbg">Get Expert</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+						</div>
+					</div>
+					<div id="hourly" class="hide">
+						<div class="pricing-chart">
+{#							Loop to display featured category#}
+                            {% for homecategory in homecategorydata %}
+{#                                if else to check if category is designing or repair#}
+                                {% if homecategory.category == 'Repair' %}
+                                    <div class="price-box btn-layout bt6">
+								<div class="grid grid-column-2">
+									<div class="column1">
+										<a href="#img5">
+									        <img src="../../static/ExpertFinder/assets/images/job{{ homecategory.imgno }}.png" width="60px" alt="" class="img-responsive" />
+										</a>
+										<div class="job-info">
+											<h6 class="pricehead"><a href={% url 'expertise-detail' homecategory.id %}>{{ homecategory.title }}</a>
+											</h6>
+											<ul class="location">
+												<li><span class="fa fa-map-marker"></span>{{ homecategory.location }}</li>
+												<li><span class="fa fa-cog"></span> {{ homecategory.category }}</li>
+											    <li> <a href="{% url 'user-expertise' homecategory.expert_identity.username %}"><span class="fa fa-id-badge"></span> {{ homecategory.expert_identity }}</a></li>
+                                            </ul>
+										</div>
+									</div>
+									<div class="column2">
+										<p><Strong>Price :</Strong>{{ homecategory.price }}</p>
+										<p><Strong>Time :</Strong>{{ homecategory.time_to_complete }}</p>
+									</div>
+									<div class="column3 text-right">
+										<a href="{% url 'expertise-detail' homecategory.id %}" class="actionbg">Get Expert</a>
+									</div>
+								</div>
+							</div>
+                                {% endif %}
+                            {% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		var e = document.getElementById("filt-monthly"),
+			d = document.getElementById("filt-hourly"),
+			t = document.getElementById("switcher"),
+			m = document.getElementById("monthly"),
+			y = document.getElementById("hourly");
+
+		e.addEventListener("click", function () {
+			t.checked = false;
+			e.classList.add("toggler--is-active");
+			d.classList.remove("toggler--is-active");
+			m.classList.remove("hide");
+			y.classList.add("hide");
+		});
+
+		d.addEventListener("click", function () {
+			t.checked = true;
+			d.classList.add("toggler--is-active");
+			e.classList.remove("toggler--is-active");
+			m.classList.add("hide");
+			y.classList.remove("hide");
+		});
+
+		t.addEventListener("click", function () {
+			d.classList.toggle("toggler--is-active");
+			e.classList.toggle("toggler--is-active");
+			m.classList.toggle("hide");
+			y.classList.toggle("hide");
+		})
+	</script>
+
+	<!-- w3l-content-photo-5 -->
+	<div class="w3l-content-photo-5">
+		<div class="content">
+			<div class="wrapper">
+				<div class="d-grid">
+					<div class="content-left">
+						<h3>Looking for resources? Want to apply for as a expert?</h3>
+						<p>Working as a expert from your home is a best idea to get an secondary income.
+							You can work on your skill or passion with any investment or marketing at flexible timing.
+							You can work whenever you want, based on how much time you get. You have to just apply here add your
+							expertise here and just wait for the perfect client. That's it
+						</p>
+						<a href="{% url 'expertise-create' %}">Join as Expert</a>
+					</div>
+					<div class="content-photo">
+						<a href="#link"><img src="{% static 'ExpertFinder/assets/images/b5.jpg' %}" class="img-responsive" alt="content-photo"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock content %}

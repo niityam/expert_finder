@@ -1,0 +1,38 @@
+{% extends "ExpertFinder/base_dashboard.html" %}
+{% block Dashcontent %}
+                        <div class="single-left-inner">
+                         <div class="table-responsive" style="overflow: auto">
+
+                           <h5 class="card-title">Completed Orders🤩 </h5>
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Order No.</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">User Email</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Delivery Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for cart in cart_items %}
+                                <tr>
+                                    <td>{{ cart.id }}</td>
+                                    <td>{{ cart.user.username }}</td>
+                                    <td>{{ cart.user.email}}</td>
+                                    <td>{{ cart.item.title }} <span class="badge badge-{{ cart.item.label_colour }}">{{ cart.item.labels }}</span></td>
+                                    <td>{{ cart.address }}</td>
+                                    <td>{{ cart.item.price }}</td>
+                                    <td>{{ cart.status }}</td>
+                                    <td>{{ cart.delivery_date }}</td>
+                                </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "ExpertFinder/base_login.html" %}
+{% load crispy_forms_tags %}
+{% block logincontent %}
+
+                            {% if messages %}
+                                {% for message in messages %}
+                                  <div class="alert alert-{{ message.tags }}">
+                                    {{ message }}
+                                  </div>
+                                {% endfor %}
+                              {% endif %}
+
+                            <form method="POST">
+                                {% csrf_token %}
+                                <fieldset  style="border: none;">
+                                    <h1 class="loginh1" >Login Form</h1>
+                                    <hr style="margin-bottom: 19px">
+                                        {{ form|crispy }}
+                                    <hr style="margin-bottom: 19px; margin-top: 19px">
+                                    <button class="loginbutton" type="submit">login</button>
+                                </fieldset>
+
+                            </form>
+                            Don't Have An Account? <a style="background-color: transparent; border: none; color: #FF4A4D;" href="{% url 'signup' %}">Sign Up</a>
+ {% endblock logincontent %}

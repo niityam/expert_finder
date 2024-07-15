@@ -1,0 +1,276 @@
+{% extends "ExpertFinder/base.html" %}
+{% load static %}
+{% block content %}
+
+
+     <section class="w3l-inner-banner">
+        <div class="wrapper">
+        </div>
+    </section>
+
+    <style>
+		.warning {
+			color: #9F6000;
+			background-color: #FEEFB3;
+		}
+        .bullet{
+            display: list-item; list-style-type: disc; list-style-position: inside;
+        }
+    </style>
+
+<style>
+.s01 {
+  {#min-height: 100vh;#}
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  {#    align-items: center;#}
+  {#font-family: 'Poppins', sans-serif;#}
+  {#padding: 15px;#}
+}
+
+.s01 form {
+  position: center;
+  width: 80%;
+  max-width: 1290px;
+}
+
+.s01 form .inner-form {
+    border-radius: 5px;
+  {#background: rgba(0, 0, 0, 0.5);#}
+    {#background box size#}
+  {#padding: 1% 1%;#}
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+.s01 form .inner-form .input-field {
+  margin-right: 1.3%;
+  height: 50px;
+}
+
+.s01 form .inner-form .input-field input {
+  height: 100%;
+  background: #f2f2f2;
+  border-radius: 5px;
+  border: 0;
+  display: block;
+  width: 100%;
+  padding: 10px 32px;
+  font-size: 20px;
+}
+
+.s01 form .inner-form .input-field input.placeholder {
+  color: #0D1326;
+  font-size: 20px;
+}
+
+.s01 form .inner-form .input-field input:-moz-placeholder {
+  color: #0D1326;
+  font-size: 20px;
+}
+
+.s01 form .inner-form .input-field input::-webkit-input-placeholder {
+  color: #0D1326;
+  font-size: 15px;
+}
+
+.s01 form .inner-form .input-field input:hover, .s01 form .inner-form .input-field input:focus {
+  box-shadow: none;
+  outline: 0;
+}
+
+.s01 form .inner-form .input-field.first-wrap {
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+}
+
+.s01 form .inner-form .input-field.second-wrap {
+  width: 32.77%;
+  min-width: 180px;
+}
+
+.s01 form .inner-form .input-field.third-wrap {
+  width: 180px;
+  margin-right: 0;
+}
+
+.s01 form .inner-form .input-field.third-wrap .btn-search {
+  height: 100%;
+  width: 100%;
+  background: #FF4A4D;
+  white-space: nowrap;
+  border-radius: 5px;
+  font-size: 20px;
+  color: #fff;
+  transition: all .2s ease-out, color .2s ease-out;
+  border: 0;
+  cursor: pointer;
+}
+
+.s01 form .inner-form .input-field.third-wrap .btn-search:hover {
+  background: #F63137;
+}
+
+@media screen and (max-width: 992px) {
+  .s01 form legend {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .s01 form .inner-form {
+    padding: 30px 35px;
+  }
+  .s01 form .inner-form .input-field {
+    height: 50px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .s01 form legend {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+  .s01 form .inner-form {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    padding: 20px;
+  }
+  .s01 form .inner-form .input-field {
+    margin-right: 0;
+  }
+  .s01 form .inner-form .input-field input {
+    padding: 5px 15px;
+    font-size: 16px;
+  }
+  .s01 form .inner-form .input-field.first-wrap {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .s01 form .inner-form .input-field.second-wrap {
+    width: calc(50% - 10px);
+    min-width: auto;
+  }
+  .s01 form .inner-form .input-field.third-wrap {
+    width: calc(50% - 10px);
+  }
+  .s01 form .inner-form .input-field.third-wrap .btn-search {
+    font-size: 16px;
+  }
+}
+
+</style>
+<div style="margin: 2.6% 0px 2.6% 0px">
+
+    <div style="text-align: center">
+        <a href="{% url 'profile' %}">Quick Hack: You Can Change Your City From Here</a>
+    </div>
+
+<div class="s01">
+
+      {% if user.is_authenticated %}
+              <form method="get">
+                <div class="inner-form">
+                        <div class="input-field first-wrap">
+                            <input type="search" name="query" id="query" placeholder="Search Expertise.."/>
+                          </div>
+                          <div class="input-field second-wrap">
+                            <input type="search" name="city" id="city" placeholder="Enter City | OPTIONAL | Now: {{ request.user.profile.city }}" />
+                          </div>
+                          <div class="input-field third-wrap">
+                            <button class="btn-search" type="submit">Search</button>
+                        </div>
+                </div>
+                </form>
+
+        {% else %}
+                 <form method="get">
+                        <div class="inner-form">
+                        <div class="input-field first-wrap">
+                            <input type="search" name="query" id="query" placeholder="Search Expertise.." />
+                          </div>
+                          <div class="input-field second-wrap">
+                            <input input type="search" name="city" id="city" placeholder="Enter your city" required />
+                          </div>
+                          <div class="input-field third-wrap">
+                            <button class="btn-search" type="submit">Search</button>
+                          </div>
+                        </div>
+                 </form>
+        {% endif %}
+
+        </div>
+</div>
+
+
+
+    <section class="w3l-price-2">
+		<div class="price-main">
+			<div class="wrapper">
+					<div id="monthly" class="">
+						<div class="pricing-chart">
+
+                        {% if city %}
+                            You searched for "{{ query }}" in "{{ city }}".
+                        {% else %}
+                            You searched for "{{ query }}" in "{{ request.user.profile.city }}".
+                        {% endif %}
+                            <hr>
+
+                        {% if allExpertise|length < 1 %}
+                            <div class="warning" style="text-align: left">
+                                 <p style="overflow: auto;" > No expert near you for: <b> {{ query }} </b>
+                                     <br> <b> Suggestion: </b>
+                                </p>
+                                <ul style="margin-left: 3%;">
+                                    <li class="bullet">Use different Keyword</li>
+                                    <li class="bullet">Change location, Current location is set to {{ request.user.profile.city }}</li>
+                                </ul>
+                            </div>
+                        {% endif %}
+
+<!--                        Loop to display featured category-->
+                            {% for homecategory in allExpertise %}
+                                    <div class="price-box btn-layout bt6">
+                                        <div class="grid grid-column-2">
+                                            <div class="column1">
+                                                <a href="#img5">
+                                                    <img src="../../static/ExpertFinder/assets/images/job{{ homecategory.imgno }}.png" width="60px" alt="">
+                                                <img src="{{ homecategory.image }}" width="60px" class="img-responsive" />
+                                                </a>
+                                                <div class="job-info">
+                                                    <h6 class="pricehead"><a href="{% url 'expertise-detail' homecategory.id %}">{{ homecategory.title }}</a>
+                                                    </h6>
+                                                    <ul class="location">
+                                                        <li><span class="fa fa-map-marker"></span>{{ homecategory.location }}</li>
+                                                        <li><span class="fa fa-cog"></span> {{ homecategory.category }}</li>
+                                                        <li> <a href="{% url 'user-expertise' homecategory.expert_identity.username %}"><span class="fa fa-id-badge"></span> {{ homecategory.expert_identity }}</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="column2">
+                                                <p><Strong>Price :</Strong>{{ homecategory.price }}</p>
+                                                <p><Strong>Time :</Strong>{{ homecategory.time_to_complete }}</p>
+{#                                                <p><Strong>By :</Strong>{{ homecategory.expert_identity }}</p>#}
+                                            </div>
+                                            <div class="column3 text-right">
+                                                <a href="{% url 'expertise-detail' homecategory.id %}" class="actionbg">Get Expert</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            {% endfor %}
+						</div>
+					</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends "ExpertFinder/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% block Dashcontent %}
+                        <div class="single-left-inner">
+                             <form method="POST">
+                                {% csrf_token %}
+                                <fieldset class="form-group">
+                                    <legend class="border-bottom mb-4">Add New Expertise</legend>
+                                    {{ form|crispy }}
+                                </fieldset>
+                                <div class="form-group">
+                                    <button class="btn btn-outline-info" type="submit">Add</button>
+                                </div>
+                            </form>
+                        </div>
+{% endblock %}

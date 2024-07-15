@@ -1,0 +1,57 @@
+{% extends "ExpertFinder/base.html" %}
+{% block content %}
+
+    <section class="w3l-inner-banner">
+        <div class="wrapper">
+        </div>
+    </section>
+    <!-- Blog -->
+    <section class="w3l-blog-single no-padding" style="overflow-wrap: break-word">
+        <div class="single blog">
+            <div class="wrapper">
+                <div class="d-grid grid-colunm-2" style="margin: 7%">
+                    <style>
+                        .loginsearch{
+                            border-style: solid; border-radius: 3px;background-color: #feeded; border-color: #fa8792; font-size: 14px; padding: 2%; margin-top: 15px; width: 100%;
+                        }
+                        .loginbutton{
+                            margin-top: 15px; width: 300px; background-color: #FF4A4D; border-style: none; border-radius: 5px;  color: #f8fcff; padding: 1.8%;
+                        }
+
+                        .loginh1{
+                            margin-bottom: 19px; font-style: oblique; font-size: 210%;
+                        }
+
+                    </style>
+                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+                    <!-- left side blog post content -->
+                    <div class="single-left-inner">
+
+                        {% block logincontent %}{% endblock %}
+
+                    </div>
+                        <!-- right side bar -->
+
+                            <aside class="posts single-left-inner">
+                                <div class="text-center">
+                                    <h1 class="loginh1" >Search Expert</h1>
+                                        <hr style="margin-bottom: 19px">
+                                        <form action="/searchresults/" method="get" >
+                                            <input class="loginsearch" type="search" name="query" id="query" placeholder="Search Expertise.. " required>
+                                            <input class="loginsearch" type="search" name="city" id="city" placeholder="Enter your city"required>
+                                            <button type="submit" class="loginbutton">Search</button>
+                                        </form>
+                                </div>
+                            </aside>
+                        </div>
+
+                    <!-- //right side bar -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //blog single-->
+
+    </div>
+ {% endblock content %}

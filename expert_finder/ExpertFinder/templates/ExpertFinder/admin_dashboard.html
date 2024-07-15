@@ -1,0 +1,66 @@
+{% extends "ExpertFinder/base_dashboard.html" %}
+{% load humanize %}
+{% block Dashcontent %}
+                        <div class="single-left">
+                        <h5 class="card-title">Basic Stats </h5>
+                        <div class="w3l-price-2">
+                            <div class="price-box btn-layout bt6">
+                                <div class="grid grid-column-2">
+                                    <div class="column1">
+                                        <a>
+                                            <img src="../../static/ExpertFinder/assets/images/income.png" width="60px" alt="" />
+                                        </a>
+                                        <div class="job-info">
+                                            <h6 class="pricehead" style="line-height: 50px"><a  href="{% url 'admin_dashboard' %}">Total Earnings 💸</a></h6>
+                                        </div>
+                                    </div>
+                                    <div class="column2">
+                                        <p><Strong></Strong></p>
+                                        <p><Strong></Strong></p>
+                                    </div>
+                                    <div class="column3 text-right">
+                                        <a class="actionbg" >₹ {{ income|intcomma }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="price-box btn-layout bt6">
+                                <div class="grid grid-column-2">
+                                    <div class="column1">
+                                        <a>
+                                            <img src="../../static/ExpertFinder/assets/images/completed.png" width="60px" alt="" />
+                                        </a>
+                                        <div class="job-info">
+                                            <h6 class="pricehead" style="line-height: 50px"><a href="{% url 'pending_orders' %}">Orders Completed 🤩</a></h6>
+                                        </div>
+                                    </div>
+                                    <div class="column2">
+                                        <p><Strong></Strong></p>
+                                        <p><Strong></Strong></p>
+                                    </div>
+                                    <div class="column3 text-right">
+                                        <a class="actionbg">{{ completed_total }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="price-box btn-layout bt6">
+                                <div class="grid grid-column-2">
+                                    <div class="column1">
+                                        <a>
+                                            <img src="../../static/ExpertFinder/assets/images/pending2.png" width="60px" alt="" />
+                                        </a>
+                                        <div class="job-info">
+                                            <h6 class="pricehead" style="line-height: 50px"><a href="{% url 'admin_view' %}">Pending Orders 😩</a></h6>
+                                        </div>
+                                    </div>
+                                    <div class="column2">
+                                        <p><Strong></Strong></p>
+                                        <p><Strong></Strong></p>
+                                    </div>
+                                    <div class="column3 text-right">
+                                        <a class="actionbg">{{ pending_total }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+{% endblock %}

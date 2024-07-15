@@ -1,0 +1,37 @@
+{% extends "ExpertFinder/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% block Dashcontent %}
+                         <style>
+                            .buttonhere{
+                                border-width: 1px;
+                                background-color: transparent;
+                                border-style: solid;
+                                border-radius: 5px;
+                            }
+                            .buttondelete{
+                                padding: 6px 15px;
+                                color: #dc3545;
+                                border-color: #dc3545;
+                            }
+                            .buttoncancel{
+                                padding: 7px 15px;
+                                color: #555555;
+                                border-color: #555555;
+                            }
+                            a.hover1:hover, a.hover1:active{ background:#555555;color:#fff; text-decoration: none; }
+                            button.hover1:hover, button.hover1:active{ background:#dc3545;color:#fff; text-decoration: none; }
+                        </style>
+
+                        <form method="POST">
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                <legend class="border-bottom mb-4">Delete Expertise</legend>
+                                {{ form|crispy }}
+                                <h2> Are you sure you want to delete '{{ object.title }}' Expertise!</h2>
+                            </fieldset>
+                            <div class="form-group">
+                                <button class="hover1 buttondelete buttonhere" type="submit">Yes, Delete</button>
+                                <a class="hover1 buttoncancel buttonhere" href="{% url 'expertise-detail' object.id %} ">Cancel</a>
+                            </div>
+                        </form>
+{% endblock %}

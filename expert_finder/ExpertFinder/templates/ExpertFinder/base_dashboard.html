@@ -1,0 +1,57 @@
+{% extends "ExpertFinder/base.html" %}
+{% load static %}
+{% block content %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <section class="w3l-inner-banner">
+        <div class="wrapper">
+        </div>
+    </section>
+    <!-- Blog -->
+    <section class="w3l-blog-single no-padding">
+        <div class="single blog">
+            <div class="wrapper"  style="overflow: auto">
+                <div class="d-grid grid-colunm-2">
+                    <!-- left side blog post content -->
+
+                    {% block Dashcontent %}{% endblock %}
+
+                    <!-- right side bar -->
+                    <div class="right-side-bar">
+                        <aside class="posts single-left-inner">
+                            <h5 class="search">Dashboard</h5>
+                                <div class="column3">
+                                    <hr >
+                                    <a href="{% url 'admin_dashboard' %}" style="background-color: transparent; border: none">Admin Dashboard</a> <hr style="width: 60%; margin-left:0;">
+                                </div>
+                        </aside>
+                        <aside class="posts single-left-inner">
+                                <h5 class="search">Admin Interface</h5>
+                                <div class="column3">
+                                    <hr >
+                                    <a href="{% url 'expertise-create' %}" style="background-color: transparent; border: none">Add Expertise</a> <hr style="width: 60%; margin-left:0;">
+                                    <a href="{% url 'user-expertise' request.user.profile.user %}" style="background-color: transparent; border: none">View All Expertise</a> <hr style="width: 60%; margin-left:0;">
+                                    <a href="{% url 'admin_view' %}" style="background-color: transparent; border: none">Completed Orders</a> <hr style="width: 60%; margin-left:0;">
+                                    <a href="{% url 'pending_orders' %}" style="background-color: transparent; border: none">Pending Orders</a> <hr style="width: 60%; margin-left:0;">
+                                </div>
+                        </aside>
+                        <aside class="posts single-left-inner">
+                           <h5 class="search">Home</h5>
+                                <div class="column3">
+                                    <hr>
+                                    <a href="{% url 'profile' %}" style="background-color: transparent; border: none">Profile</a> <hr style="width: 60%; margin-left:0;">
+                                    <a href="{% url 'home' %}" style="background-color: transparent; border: none">Home</a> <hr style="width: 60%; margin-left:0;">
+                                    <a href="{% url 'logout' %}" style="background-color: transparent; border: none">Log-out</a> <hr style="width: 60%; margin-left:0;">
+                                </div>
+                        </aside>
+                    </div>
+                    <!-- //right side bar -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //blog single-->
+
+    </div>
+ {% endblock content %}

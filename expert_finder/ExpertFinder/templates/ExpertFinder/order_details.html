@@ -1,0 +1,106 @@
+{% extends "ExpertFinder/base.html" %}
+{% load humanize %}
+{% load static %}
+{% block content %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <section class="w3l-inner-banner">
+        <div class="wrapper">
+        </div>
+    </section>
+    <!-- Blog -->
+    <section class="w3l-blog-single no-padding">
+        <div class="single blog">
+            <div class="wrapper" style="width: 96%; overflow: auto"  >
+            {% if messages %}
+                                {% for message in messages %}
+                                  <div class="alert alert-{{ message.tags }}">
+                                    {{ message }}
+                                  </div>
+                                {% endfor %}
+                              {% endif %}
+                <div class="d-grid grid-colunm-2">
+                    <!-- left side blog post content -->
+
+                   <div class="single-left-inner">
+                    <div class="table-responsive">
+                    {% if not items %}
+                      <h5 class="card-title">Ohh Noo, you don't have any ONGOING ORDERS!</h5>
+                    {% else %}
+                        <h5 class="card-title">Ongoing Orders🎨</h5>
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Ordered</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Expert Email</th>
+                                    <th scope="col">Expert City</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item_active in items %}
+                                    <tr>
+                                        <td>{{ item_active.ordered_date }}</td>
+                                        <td>{{ item_active.item.title }}</td>
+                                        <td>{{ item_active.item.expert_identity.email }}</td>
+                                        <td>{{ item_active.item.expert_identity.profile.city }} </td>
+                                        <td>{{ item_active.item.price }}</td>
+                                        <td>{{ item_active.status }} </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                    </div>
+                </div>
+
+                <div class="single-left-inner">
+                    <div class="table-responsive">
+                    {% if not items %}
+                      <h5 class="card-title">Ohh Noo, you don't havn't booked any expert YET!</h5>
+                    {% else %}
+                        <h5 class="card-title">Past Orders 🖼️</h5>
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Ordered On</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Expert Email</th>
+                                    <th scope="col">Expert City</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Completed On</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cart in cart_items %}
+                                    <tr>
+                                        <td>{{ cart.ordered_date }}</td>
+                                        <td>{{ cart.item.title }}</td>
+                                        <td>{{ cart.item.expert_identity.email }}</td>
+                                        <td>{{ cart.item.expert_identity.profile.city }} </td>
+                                        <td>{{ cart.item.price }}</td>
+                                        <td>{{ cart.status }} </td>
+                                        <td>{{ cart.delivery_date }} </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                    </div>
+                </div>
+                    <!-- right side bar -->
+
+
+                    <!-- //right side bar -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //blog single-->
+
+    </div>
+ {% endblock content %}

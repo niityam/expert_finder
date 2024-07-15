@@ -1,0 +1,53 @@
+{% extends "ExpertFinder/base.html" %}
+{% load static %}
+
+{% block content %}
+	<!-- w3l-covers-14 -->
+    <br><br><br><br>
+	<section class="w3l-price-2">
+		<div class="price-main">
+			<h3 class="heading">Expertise of {{ view.kwargs.username }}</h3>
+			<div class="wrapper">
+					<div id="monthly" class="">
+						<div class="pricing-chart">
+<!--                        Loop to display featured category-->
+                            {% for homecategory in homecategorydata %}
+<!--                                if else to check if category is designing or repair-->
+                                    <div class="price-box btn-layout bt6">
+                                        <div class="grid grid-column-2">
+                                            <div class="column1">
+                                                <a href="#img5">
+                                                    <img src="../../static/ExpertFinder/assets/images/job{{ homecategory.imgno }}.png" width="60px" alt="">
+                                                <img src="{{ homecategory.image }}" width="60px" class="img-responsive" />
+                                                </a>
+                                                <div class="job-info">
+                                                    <h6 class="pricehead"><a href="{% url 'expertise-detail' homecategory.id %}">{{ homecategory.title }}</a>
+                                                    </h6>
+                                                    <ul class="location">
+                                                        <li><span class="fa fa-map-marker"></span>{{ homecategory.location }}</li>
+                                                        <li><span class="fa fa-cog"></span> {{ homecategory.category }}</li>
+                                                        <li> <a href="{% url 'user-expertise' homecategory.expert_identity.username %}"><span class="fa fa-id-badge"></span> {{ homecategory.expert_identity }}</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="column2">
+                                                <p><Strong>Price :</Strong>{{ homecategory.price }}</p>
+                                                <p><Strong>Time :</Strong>{{ homecategory.time_to_complete }}</p>
+{#                                                <p><Strong>By :</Strong>{{ homecategory.expert_identity }}</p>#}
+                                            </div>
+                                            <div class="column3 text-right">
+                                                <a href="{% url 'expertise-detail' homecategory.id %}" class="actionbg">Get Expert</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            {% endfor %}
+						</div>
+					</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock content %}
